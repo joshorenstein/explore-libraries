@@ -1,18 +1,16 @@
-#' ---
-#' output: github_document
-#' --
 
 
 #' Which libraries does R search for packages?
 .Library
 # try .libPaths(), .Library
 .libPaths()
-
+library(tidyverse)
 #' Installed packages
 
 ## use installed.packages() to get all installed packages
 ## if you like working with data frame or tibble, make it so right away!
 ## remember to use View() or similar to inspect
+
 View(installed.packages())
 ## how many packages?
 data <- as.tibble(installed.packages())
@@ -25,9 +23,9 @@ nrow(data)
 ##   * what proportion need compilation?
 ##   * how break down re: version of R they were built on
 
-data %>% group_by(LibPath) %>% summarise(n=n())
+data %>% count(Built,LibPath)
 data %>% group_by(Priority) %>% summarise(n=n())
-data %>% filter(NeedsCompilation=='yes') %>% count()
+data %>% filter(NeedsCompilation=='no') %>% count()
 data %>% count(Built)
 ## for tidyverts, here are some useful patterns
 # data %>% count(var)
@@ -52,4 +50,4 @@ data %>% count(Built)
 
 
 
-
+sessionInfo()
