@@ -1,5 +1,5 @@
 
-
+#i added a comment
 #' Which libraries does R search for packages?
 .Library
 # try .libPaths(), .Library
